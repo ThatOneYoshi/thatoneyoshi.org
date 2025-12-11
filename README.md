@@ -1,2 +1,2 @@
 # Web-moment
-Ts is just for my website lmao
+uh hai again, selim didnt had to delete the old website repo cus of a simple avoidable issue 
