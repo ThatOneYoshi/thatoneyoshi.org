@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yoshi's lil blogs ig</title>
+    <link rel="icon" href="media/onekoicon.gif" type="image/gif">
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        function getRandYoncat() {
+            var rand = Math.floor(Math.random() * 9);
+            return rand == 0 ? 1 : rand;
+        }
+        function getRandYoncatImage() {
+            var img = document.getElementById("YoncatImage");
+            if (img) {
+                var rand = getRandYoncat();
+                img.src = "media/yoncat" + rand + ".png";
+            }
+        }
+        window.onload = getRandYoncatImage;
+    </script>
+    <script defer src="oneko_script.js" data-cat="oneko.gif"></script>
+    <!-- selim was here -->
+</head>
+<body onload="getRandYoncatImage();">
+    <header>
+        <center>
+            <img src="media/yoncat5.png" alt="yoncat" id="YoncatImage" class="logo" width="200">
+        </center>
+        <h2>Yoshi's blogs</h2>
+        <nav class="nav-menu">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="blogs.html" class="nav-link active">Blogs</a>
+            <a href="projects.html" class="nav-link">Projects</a>
+            <a href="credits.html" class="nav-link">Credits</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+        </nav>
+    </header>
+    
+    <main>
+        <section>
+            <center>
+                <p>Sup, welcome to my blog but as you can see theres nothin rn so....</p>
+                <p>might as well get back to the home page.</p>
+            </center>
+        </section>
+    </main>
+    
+    <footer>
+        <center>
+            <p>&copy; 2025 ThatOneYoshi</p>
+        </center>
+    </footer>
+</body>
+</html>
