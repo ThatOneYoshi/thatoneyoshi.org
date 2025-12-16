@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index of /media</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: monospace;
+            background: linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Stars background */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 0 0 20px rgba(100, 150, 255, 0.8);
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 20px rgba(100, 150, 255, 0.8); }
+            50% { text-shadow: 0 0 30px rgba(150, 200, 255, 1); }
+        }
+
+        .directory-list {
+            background: rgba(20, 20, 40, 0.8);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(100, 150, 255, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 30px rgba(100, 150, 255, 0.2);
+        }
+
+        .item {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            margin: 5px 0;
+            background: rgba(30, 30, 60, 0.6);
+            border: 1px solid rgba(100, 150, 255, 0.2);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .item:hover {
+            background: rgba(50, 80, 150, 0.6);
+            border-color: rgba(150, 200, 255, 0.6);
+            transform: translateX(10px);
+            box-shadow: 0 0 15px rgba(100, 150, 255, 0.4);
+        }
+
+        .icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+        }
+
+        .folder-icon::before {
+            content: "📁";
+        }
+
+        .image-icon::before {
+            content: "🖼️";
+        }
+
+        .gif-icon::before {
+            content: "🎞️";
+        }
+
+        .parent-icon::before {
+            content: "⬆️";
+        }
+
+        .item-name {
+            flex: 1;
+            font-size: 1.1em;
+        }
+
+        .breadcrumb {
+            margin-bottom: 20px;
+            padding: 10px;
+            background: rgba(30, 30, 60, 0.6);
+            border-radius: 5px;
+            border: 1px solid rgba(100, 150, 255, 0.3);
+        }
+
+        .preview {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(20, 20, 40, 0.8);
+            border: 2px solid rgba(100, 150, 255, 0.3);
+            border-radius: 10px;
+            text-align: center;
+            display: none;
+        }
+
+        .preview img {
+            max-width: 100%;
+            max-height: 400px;
+            border-radius: 5px;
+            box-shadow: 0 0 20px rgba(100, 150, 255, 0.3);
+        }
+
+        .preview-name {
+            margin-top: 10px;
+            font-size: 1.1em;
+            color: #a8d0ff;
+        }
+    </style>
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+    
+    <div class="container">
+        <h1>Index of /media</h1>
+        
+        <div class="breadcrumb" id="breadcrumb">
+            /media
+        </div>
+        
+        <div class="directory-list" id="directoryList"></div>
+        
+        <div class="preview" id="preview">
+            <img id="previewImage" src="" alt="Preview">
+            <div class="preview-name" id="previewName"></div>
+        </div>
+    </div>
+
+    <script>
+        // Media folder structure
+        const mediaStructure = {
+            folders: [],
+            files: [
+                'brewshopig.png',
+                'fackyou.png',
+                'onekoicon.gif',
+                'wm-logo.png',
+                'yoncat1.png',
+                'yoncat2.png',
+                'yoncat3.png',
+                'yoncat4.png',
+                'yoncat5.png',
+                'yoncat6.png',
+                'yoncat7.png',
+                'yoncat8.png'
+            ]
+        };
+
+        // Generate stars
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.width = Math.random() * 3 + 1 + 'px';
+                star.style.height = star.style.width;
+                star.style.animationDelay = Math.random() * 3 + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // Render directory listing
+        function renderDirectory() {
+            const list = document.getElementById('directoryList');
+            list.innerHTML = '';
+
+            // Parent directory
+            const parent = document.createElement('div');
+            parent.className = 'item';
+            parent.innerHTML = '<div class="icon parent-icon"></div><div class="item-name">..</div>';
+            parent.onclick = () => window.location.href = '/';
+            list.appendChild(parent);
+
+            // Folders
+            mediaStructure.folders.forEach(folder => {
+                const item = document.createElement('div');
+                item.className = 'item';
+                item.innerHTML = `<div class="icon folder-icon"></div><div class="item-name">${folder}/</div>`;
+                list.appendChild(item);
+            });
+
+            // Files
+            mediaStructure.files.forEach(file => {
+                const item = document.createElement('a');
+                item.className = 'item';
+                item.href = `https://thatoneyoshi.org/media/${file}`;
+                item.target = '_blank';
+                item.innerHTML = `<div class="item-name">${file}</div>`;
+                
+                list.appendChild(item);
+            });
+        }
+
+        // Initialize
+        createStars();
+        renderDirectory();
+    </script>
+</body>
+</html>
