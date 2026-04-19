@@ -6,19 +6,41 @@
     <title>Ways to contact me :3c</title>
     <link rel="icon" href="media/onekoicon.gif" type="image/gif">
     <link rel="stylesheet" href="styles.css">
-    <script>
+           <script>
         function getRandYoncat() {
             var rand = Math.floor(Math.random() * 9);
             return rand == 0 ? 1 : rand;
         }
-        function getRandYoncatImage() {
+
+        function randomizeTitle() {
+            const titles = [
+                "Yoshi's goofy website",
+                "Welcome back :P",
+                "balls :3",
+                "Now with 20% more furry lmao"
+            ];
+            const randomIndex = Math.floor(Math.random() * titles.length);
+            document.title = titles[randomIndex];
+        }
+
+        function randomizeEverything() {
             var img = document.getElementById("YoncatImage");
             if (img) {
                 var rand = getRandYoncat();
                 img.src = "media/yoncat" + rand + ".png";
             }
+            randomizeTitle();
         }
-        window.onload = getRandYoncatImage;
+
+        window.addEventListener('blur', () => {
+            document.title = "Seeya later. Stay safe.";
+        });
+
+        window.addEventListener('focus', () => {
+            randomizeTitle();
+        });
+
+        window.onload = randomizeEverything;
     </script>
     <script defer src="oneko_script.js" data-cat="oneko.gif"></script>
     <!-- selim was here -->
