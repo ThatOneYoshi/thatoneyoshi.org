@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stuff that happened in WM this month.</title>
+    <link rel="icon" href="/media/onekoicon.gif" type="image/gif">
+    <link rel="stylesheet" href="/styles.css">
+    <script>
+        function getRandYoncat() {
+            return Math.floor(Math.random() * 9) + 1;
+        }
+
+        function randomizeTitle() {
+            const titles = [
+                "mhm.",
+                "WiiMart shit*"
+            ];
+            const randomIndex = Math.floor(Math.random() * titles.length);
+            document.title = titles[randomIndex];
+        }
+
+        function randomizeEverything() {
+            var img = document.getElementById("YoncatImage");
+            if (img) {
+                var rand = getRandYoncat();
+                img.src = "/media/yoncat" + rand + ".png";
+            }
+            randomizeTitle();
+        }
+
+        window.addEventListener('blur', () => {
+            document.title = "later, come back soon :3";
+        });
+
+        window.addEventListener('focus', () => {
+            randomizeTitle();
+        });
+
+        window.onload = randomizeEverything;
+    </script>
+    <script defer src="/oneko_script.js" data-cat="oneko.gif"></script>
+    </head>
+<body>
+    <header>
+        <center>
+            <img src="/media/yoncat5.png" alt="yonkat" id="YoncatImage" class="logo" width="200">
+        </center>
+        <h2>Stuff that happened in WiiMart</h2>
+        <nav class="nav-menu">
+            <a href="https://thatoneyoshi.org/" class="nav-link">Home</a>
+            <a href="https://thatoneyoshi.org/blogs" class="nav-link active">Blogs</a>
+            <a href="https://thatoneyoshi.org/projects" class="nav-link">Projects</a>
+            <a href="https://thatoneyoshi.org/credits" class="nav-link">Credits</a>
+            <a href="https://thatoneyoshi.org/contact" class="nav-link">Contact</a>
+        </nav>
+    </header>
+
+<center>
+     <img src="/media/blogs/wip-post.png" alt="WIP Post" class="logo" width="600">
